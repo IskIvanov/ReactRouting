@@ -1,17 +1,31 @@
-import React from 'react';
+import React, { Component } from 'react'
+
+import axios from 'axios';
 import {
   BrowserRouter,
   Route
 } from 'react-router-dom';
 
-import Home from './Home'
+//Add components
+import Header from './Header';
+import Home from './Home';
+import About from './About';
+import Teachers from './Teachers';
+import Courses from './Courses';
 
-const App = () => (
-  <BrowserRouter>
-    <div className="container">
-      <Route path="./" componet={Home} />
-    </div>
-  </BrowserRouter>
-);
+export default class App extends Component {
 
-export default App;
+  render() {
+    return (
+    <BrowserRouter>
+      <div className="container">
+        <Header />
+        <Route exact path="/" component={Home} />
+        <Route path="/about" render={ () => <About title='New' /> }/>
+        <Route path="/teachers" component={Teachers}/>
+        <Route path="/courses" component={Courses}/>
+      </div>
+    </BrowserRouter>
+    )
+  }
+}
